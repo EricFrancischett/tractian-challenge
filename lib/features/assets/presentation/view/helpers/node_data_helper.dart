@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tractian_challenge/common/entities/asset/asset_entity.dart';
 import 'package:tractian_challenge/common/entities/location/location_entity.dart';
-import 'package:tractian_challenge/features/assets/enums/component_sensor_type_enum.dart';
-import 'package:tractian_challenge/features/assets/enums/component_status_enum.dart';
-import 'package:tractian_challenge/features/assets/enums/node_type_enum.dart';
+import 'package:tractian_challenge/features/assets/domain/enums/component_sensor_type_enum.dart';
+import 'package:tractian_challenge/features/assets/domain/enums/component_status_enum.dart';
+import 'package:tractian_challenge/features/assets/domain/enums/node_type_enum.dart';
 
 class NodeDataHelper {
   static String getNodeName(dynamic data) {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tractian_challenge/common/entities/tree_node/tree_node.dart';
-import 'package:tractian_challenge/features/assets/enums/component_sensor_type_enum.dart';
-import 'package:tractian_challenge/features/assets/enums/component_status_enum.dart';
-import 'package:tractian_challenge/features/assets/enums/node_type_enum.dart';
-import 'package:tractian_challenge/features/assets/helpers/node_data_helper.dart';
+import 'package:tractian_challenge/features/assets/domain/enums/component_sensor_type_enum.dart';
+import 'package:tractian_challenge/features/assets/domain/enums/component_status_enum.dart';
+import 'package:tractian_challenge/features/assets/domain/enums/node_type_enum.dart';
+import 'package:tractian_challenge/features/assets/presentation/view/helpers/node_data_helper.dart';
 
 class TreeView extends StatelessWidget {
   final List<TreeNode> nodes;
