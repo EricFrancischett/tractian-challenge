@@ -58,6 +58,20 @@ class HomePage extends StatelessWidget {
                 );
               },
             ),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              child: const Text('Test Unit'),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const AssetsPage(
+                      unitLocations: UnitsAssetsConstants.testLocations,
+                      unitAssets: UnitsAssetsConstants.testAssets,
+                    ),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),

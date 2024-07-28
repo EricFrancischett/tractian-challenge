@@ -8,5 +8,15 @@
     "name": "Mixer for Soaking",
     "parentId": "6a9b4171b62cbf0062dd8a67",
     "id": "6a9b41afa2555c0067916b94"
+  },
+  {
+    "name": "Test Location Parent",
+    "id": "123",
+    "parentId": null
+  },
+  {
+    "name": "Test Location Child",
+    "id": "456",
+    "parentId": "123"
   }
 ]

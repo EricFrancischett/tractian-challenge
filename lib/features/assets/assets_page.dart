@@ -25,6 +25,8 @@ class _AssetsPageState extends State<AssetsPage> {
   late Future<List<TreeNode<dynamic>>> futureTreeNodes;
   late TextEditingController _searchController;
   String _searchQuery = '';
+  bool _showEnergySensors = false;
+  bool _showCriticalStatus = false;
 
   @override
   void initState() {
@@ -37,6 +39,18 @@ class _AssetsPageState extends State<AssetsPage> {
   void _onSearchChanged() {
     setState(() {
       _searchQuery = _searchController.text;
+    });
+  }
+
+  void _onEnergySensorsChanged(bool? value) {
+    setState(() {
+      _showEnergySensors = value ?? false;
+    });
+  }
+
+  void _onCriticalStatusChanged(bool? value) {
+    setState(() {
+      _showCriticalStatus = value ?? false;
     });
   }
 
@@ -66,7 +80,7 @@ class _AssetsPageState extends State<AssetsPage> {
   }
 
   List<TreeNode<dynamic>> _filterTree(List<TreeNode<dynamic>> nodes) {
-    if (_searchQuery.isEmpty) {
+    if (_searchQuery.isEmpty && !_showEnergySensors && !_showCriticalStatus) {
       return nodes;
     }
 
@@ -81,8 +95,17 @@ class _AssetsPageState extends State<AssetsPage> {
   }
 
   TreeNode<dynamic>? _containsQuery(TreeNode<dynamic> node, String query) {
-    if (_getNodeName(node.data).toLowerCase().contains(query.toLowerCase())) {
-      return node; // If the current node matches the query, return it.
+    bool matchesFilter = true;
+    if (_showEnergySensors) {
+      matchesFilter = _matchesEnergySensorFilter(node.data);
+    }
+    if (_showCriticalStatus) {
+      matchesFilter = matchesFilter && _matchesCriticalStatusFilter(node.data);
+    }
+
+    if (_getNodeName(node.data).toLowerCase().contains(query.toLowerCase()) &&
+        matchesFilter) {
+      return node; // If the current node matches the query and filters, return it.
     }
 
     List<TreeNode<dynamic>> matchingChildren = [];
@@ -100,7 +123,21 @@ class _AssetsPageState extends State<AssetsPage> {
               matchingChildren); // Return the node with matching children.
     }
 
-    return null; // If neither the node nor its children match the query, return null.
+    return null; // If neither the node nor its children match the query and filters, return null.
+  }
+
+  bool _matchesEnergySensorFilter(dynamic data) {
+    if (data is AssetEntity) {
+      return data.sensorType == 'energy';
+    }
+    return false;
+  }
+
+  bool _matchesCriticalStatusFilter(dynamic data) {
+    if (data is AssetEntity) {
+      return data.status == 'alert';
+    }
+    return false;
   }
 
   String _getNodeName(dynamic data) {
@@ -136,16 +173,16 @@ class _AssetsPageState extends State<AssetsPage> {
               Expanded(
                 child: CheckboxListTile(
                   title: const Text('Energia'),
-                  value: false,
-                  onChanged: (value) {},
+                  value: _showEnergySensors,
+                  onChanged: _onEnergySensorsChanged,
                 ),
               ),
               const SizedBox(width: 8),
               Expanded(
                 child: CheckboxListTile(
                   title: const Text('Critico'),
-                  value: false,
-                  onChanged: (value) {},
+                  value: _showCriticalStatus,
+                  onChanged: _onCriticalStatusChanged,
                 ),
               ),
             ],
