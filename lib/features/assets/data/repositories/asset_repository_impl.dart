@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
-import 'package:tractian_challenge/common/entities/asset/asset_entity.dart';
-import 'package:tractian_challenge/common/generics/resource.dart';
+import 'package:tractian_challenge/core/entities/asset/asset_entity.dart';
+import 'package:tractian_challenge/core/error/exceptions.dart';
+import 'package:tractian_challenge/core/generics/resource.dart';
 import 'package:tractian_challenge/features/assets/data/datasources/asset_local_datasource.dart';
 import 'package:tractian_challenge/features/assets/domain/repositories/asset_repository.dart';
 
@@ -21,8 +22,18 @@ class AssetRepositoryImpl implements AssetRepository {
             jsonAssets.map((json) => AssetEntity.fromJson(json)).toList();
         return Resource.success(data: assets);
       }
+    } on FormatException catch (error) {
+      return Resource.failed(
+        error: InvalidFormatException(
+          message: 'Invalid JSON format: $error',
+        ),
+      );
     } catch (error) {
-      return Resource.failed(error: Exception(error));
+      return Resource.failed(
+        error: UnknownException(
+          message: 'Unknown error: $error',
+        ),
+      );
     }
   }
 }

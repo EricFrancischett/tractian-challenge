@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tractian_challenge/common/entities/tree_node/tree_node.dart';
+import 'package:tractian_challenge/core/entities/tree_node/tree_node.dart';
 import 'package:tractian_challenge/features/assets/domain/enums/component_sensor_type_enum.dart';
 import 'package:tractian_challenge/features/assets/domain/enums/component_status_enum.dart';
 import 'package:tractian_challenge/features/assets/domain/enums/node_type_enum.dart';

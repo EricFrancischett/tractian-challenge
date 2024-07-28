@@ -1,4 +1,4 @@
-import 'package:tractian_challenge/common/generics/status.dart';
+import 'package:tractian_challenge/core/generics/status.dart';
 
 class Resource<T, E> {
   T? data;

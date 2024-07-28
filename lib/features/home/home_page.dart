@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tractian_challenge/common/enums/units_enum.dart';
+import 'package:tractian_challenge/core/enums/units_enum.dart';
 import 'package:tractian_challenge/routes/app_routes.dart';
 
 class HomePage extends StatelessWidget {

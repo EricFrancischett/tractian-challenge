@@ -2,15 +2,15 @@
 
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
-import 'package:tractian_challenge/common/entities/asset/asset_entity.dart';
-import 'package:tractian_challenge/common/entities/location/location_entity.dart';
+import 'package:tractian_challenge/core/entities/asset/asset_entity.dart';
+import 'package:tractian_challenge/core/entities/location/location_entity.dart';
 import 'package:tractian_challenge/features/assets/domain/usecases/get_assets_usecase.dart';
 import 'package:tractian_challenge/features/assets/domain/usecases/get_locations_usecase.dart';
 
 import 'package:tractian_challenge/features/assets/presentation/view/helpers/tree_builder.dart';
-import 'package:tractian_challenge/common/entities/tree_node/tree_node.dart';
+import 'package:tractian_challenge/core/entities/tree_node/tree_node.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/helpers/node_data_helper.dart';
-import 'package:tractian_challenge/common/enums/units_enum.dart';
+import 'package:tractian_challenge/core/enums/units_enum.dart';
 
 part 'assets_controller.g.dart';
 

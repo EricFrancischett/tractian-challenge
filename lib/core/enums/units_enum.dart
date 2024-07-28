@@ -1,4 +1,4 @@
-import 'package:tractian_challenge/common/constants/units_assets_constants.dart';
+import 'package:tractian_challenge/core/constants/units_assets_constants.dart';
 
 enum UnitsEnum {
   apex(

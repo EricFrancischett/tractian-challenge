@@ -1,6 +1,6 @@
-import 'package:tractian_challenge/common/entities/asset/asset_entity.dart';
-import 'package:tractian_challenge/common/entities/location/location_entity.dart';
-import 'package:tractian_challenge/common/entities/tree_node/tree_node.dart';
+import 'package:tractian_challenge/core/entities/asset/asset_entity.dart';
+import 'package:tractian_challenge/core/entities/location/location_entity.dart';
+import 'package:tractian_challenge/core/entities/tree_node/tree_node.dart';
 
 class TreeBuilder {
   static List<TreeNode<dynamic>> buildTree(

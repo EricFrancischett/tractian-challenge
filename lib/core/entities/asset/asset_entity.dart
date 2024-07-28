@@ -1,4 +1,4 @@
-import 'package:tractian_challenge/common/entities/asset/asset_entity_keys.dart';
+import 'package:tractian_challenge/core/entities/asset/asset_entity_keys.dart';
 
 class AssetEntity {
   final String name;

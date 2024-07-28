@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
-import 'package:tractian_challenge/common/entities/location/location_entity.dart';
-import 'package:tractian_challenge/common/generics/resource.dart';
+import 'package:tractian_challenge/core/entities/location/location_entity.dart';
+import 'package:tractian_challenge/core/error/exceptions.dart';
+import 'package:tractian_challenge/core/generics/resource.dart';
 import 'package:tractian_challenge/features/assets/domain/repositories/location_repository.dart';
 
 class GetLocationsUsecase {
@@ -18,7 +19,11 @@ class GetLocationsUsecase {
         return Resource.success(data: jsonLocations);
       }
     } catch (error) {
-      return Resource.failed(error: Exception(error));
+      return Resource.failed(
+        error: UnknownException(
+          message: 'Unknown error: $error',
+        ),
+      );
     }
   }
 }
