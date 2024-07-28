@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tractian_challenge/common/entities/asset/asset_entity.dart';
-import 'package:tractian_challenge/common/entities/location/location_entity.dart';
 import 'package:tractian_challenge/common/entities/tree_node/tree_node.dart';
 import 'package:tractian_challenge/features/assets/enums/component_sensor_type_enum.dart';
 import 'package:tractian_challenge/features/assets/enums/component_status_enum.dart';
 import 'package:tractian_challenge/features/assets/enums/node_type_enum.dart';
+import 'package:tractian_challenge/features/assets/helpers/node_data_helper.dart';
 
 class TreeView extends StatelessWidget {
   final List<TreeNode> nodes;
@@ -22,14 +21,15 @@ class TreeView extends StatelessWidget {
   }
 
   Widget _buildNode(TreeNode node) {
-    NodeTypeEnum? type = _getType(node.data);
-    ComponentSensorTypeEnum? sensorType = _getSensorType(node.data);
-    ComponentStatusEnum? status = _getStatys(node.data);
+    NodeTypeEnum? type = NodeDataHelper.getNodeType(node.data);
+    ComponentSensorTypeEnum? sensorType =
+        NodeDataHelper.getComponentSensorType(node.data);
+    ComponentStatusEnum? status = NodeDataHelper.getComponentStatus(node.data);
     if (node.children.isEmpty) {
       return Padding(
         padding: const EdgeInsets.only(left: 8.0),
         child: ListTile(
-          leading: getIconByType(type),
+          leading: NodeDataHelper.getIconByType(type),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -46,7 +46,7 @@ class TreeView extends StatelessWidget {
             ],
           ),
           title: Text(
-            _getNodeName(node.data),
+            NodeDataHelper.getNodeName(node.data),
             style: const TextStyle(
               fontSize: 12,
             ),
@@ -57,9 +57,9 @@ class TreeView extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.only(left: 8.0),
         child: ExpansionTile(
-          leading: getIconByType(type),
+          leading: NodeDataHelper.getIconByType(type),
           title: Text(
-            _getNodeName(node.data),
+            NodeDataHelper.getNodeName(node.data),
             style: const TextStyle(
               fontSize: 12,
             ),
@@ -69,73 +69,4 @@ class TreeView extends StatelessWidget {
       );
     }
   }
-
-  String _getNodeName(dynamic data) {
-    if (data is AssetEntity) {
-      return data.name;
-    } else if (data is LocationEntity) {
-      return data.name;
-    } else {
-      return 'Unknown';
-    }
-  }
-
-  NodeTypeEnum? _getType(dynamic data) {
-    if (data is LocationEntity) {
-      return NodeTypeEnum.location;
-    } else if (data is AssetEntity) {
-      if (data.sensorType != null) {
-        return NodeTypeEnum.component;
-      } else {
-        return NodeTypeEnum.asset;
-      }
-    } else {
-      return null;
-    }
-  }
-
-  Widget? getIconByType(NodeTypeEnum? type) {
-    switch (type) {
-      case NodeTypeEnum.asset:
-        return const Icon(Icons.crop_square);
-      case NodeTypeEnum.location:
-        return const Icon(Icons.place);
-      case NodeTypeEnum.component:
-        return const Icon(Icons.crop_16_9);
-      default:
-        return null;
-    }
-  }
-
-  ComponentSensorTypeEnum? _getSensorType(dynamic data) {
-    if (data is AssetEntity) {
-      String? sensorType = data.sensorType;
-      if (sensorType != null) {
-        if (sensorType == 'energy') {
-          return ComponentSensorTypeEnum.energy;
-        } else if (sensorType == 'vibration') {
-          return ComponentSensorTypeEnum.vibration;
-        }
-      }
-    }
-    return null;
-  }
-
-  ComponentStatusEnum? _getStatys(dynamic data) {
-    if (data is AssetEntity) {
-      String? status = data.status;
-      if (status != null) {
-        if (status == 'alert') {
-          return ComponentStatusEnum.alert;
-        } else if (status == 'operating') {
-          return ComponentStatusEnum.operating;
-        }
-      }
-    }
-    return null;
-  }
 }
-
-
-
-

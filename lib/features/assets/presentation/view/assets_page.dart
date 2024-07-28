@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:tractian_challenge/common/entities/asset/asset_entity.dart';
 import 'package:tractian_challenge/common/entities/location/location_entity.dart';
 import 'package:tractian_challenge/common/enums/units_enum.dart';
+import 'package:tractian_challenge/features/assets/helpers/node_data_helper.dart';
 import 'package:tractian_challenge/features/assets/helpers/tree_builder.dart';
 import 'package:tractian_challenge/common/entities/tree_node/tree_node.dart';
 import 'package:tractian_challenge/features/assets/components/tree_view.dart';
@@ -96,13 +97,16 @@ class _AssetsPageState extends State<AssetsPage> {
   TreeNode<dynamic>? _containsQuery(TreeNode<dynamic> node, String query) {
     bool matchesFilter = true;
     if (_showEnergySensors) {
-      matchesFilter = _matchesEnergySensorFilter(node.data);
+      matchesFilter = NodeDataHelper.matchesEnergySensorFilter(node.data);
     }
     if (_showCriticalStatus) {
-      matchesFilter = matchesFilter && _matchesCriticalStatusFilter(node.data);
+      matchesFilter = matchesFilter &&
+          NodeDataHelper.matchesCriticalStatusFilter(node.data);
     }
 
-    if (_getNodeName(node.data).toLowerCase().contains(query.toLowerCase()) &&
+    if (NodeDataHelper.getNodeName(node.data)
+            .toLowerCase()
+            .contains(query.toLowerCase()) &&
         matchesFilter) {
       return node; // If the current node matches the query and filters, return it.
     }
@@ -123,30 +127,6 @@ class _AssetsPageState extends State<AssetsPage> {
     }
 
     return null; // If neither the node nor its children match the query and filters, return null.
-  }
-
-  bool _matchesEnergySensorFilter(dynamic data) {
-    if (data is AssetEntity) {
-      return data.sensorType == 'energy';
-    }
-    return false;
-  }
-
-  bool _matchesCriticalStatusFilter(dynamic data) {
-    if (data is AssetEntity) {
-      return data.status == 'alert';
-    }
-    return false;
-  }
-
-  String _getNodeName(dynamic data) {
-    if (data is AssetEntity) {
-      return data.name;
-    } else if (data is LocationEntity) {
-      return data.name;
-    } else {
-      return 'Unknown';
-    }
   }
 
   @override
