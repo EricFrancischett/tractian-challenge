@@ -22,22 +22,31 @@ class AssetsPage extends StatefulWidget {
 }
 
 class _AssetsPageState extends State<AssetsPage> {
-  late Future<List<TreeNode>> futureTreeNodes;
+  late Future<List<TreeNode<dynamic>>> futureTreeNodes;
+  late TextEditingController _searchController;
+  String _searchQuery = '';
 
   @override
   void initState() {
     super.initState();
+    _searchController = TextEditingController();
+    _searchController.addListener(_onSearchChanged);
     futureTreeNodes = loadTreeNodes();
   }
 
-  Future<List<TreeNode>> loadTreeNodes() async {
+  void _onSearchChanged() {
+    setState(() {
+      _searchQuery = _searchController.text;
+    });
+  }
+
+  Future<List<TreeNode<dynamic>>> loadTreeNodes() async {
     // Load assets and locations
     final jsonAssetsString = await rootBundle.loadString(widget.unitAssets);
     final List<dynamic> jsonAssetsResponse = json.decode(jsonAssetsString);
     final List<AssetEntity> assets =
         jsonAssetsResponse.map((json) => AssetEntity.fromJson(json)).toList();
 
-    // Assuming locations are provided similarly
     final jsonLocationsString =
         await rootBundle.loadString(widget.unitLocations);
     final List<dynamic> jsonLocationsResponse =
@@ -51,6 +60,60 @@ class _AssetsPageState extends State<AssetsPage> {
   }
 
   @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  List<TreeNode<dynamic>> _filterTree(List<TreeNode<dynamic>> nodes) {
+    if (_searchQuery.isEmpty) {
+      return nodes;
+    }
+
+    List<TreeNode<dynamic>> filteredNodes = [];
+    for (var node in nodes) {
+      final matchingNode = _containsQuery(node, _searchQuery);
+      if (matchingNode != null) {
+        filteredNodes.add(matchingNode);
+      }
+    }
+    return filteredNodes;
+  }
+
+  TreeNode<dynamic>? _containsQuery(TreeNode<dynamic> node, String query) {
+    if (_getNodeName(node.data).toLowerCase().contains(query.toLowerCase())) {
+      return node; // If the current node matches the query, return it.
+    }
+
+    List<TreeNode<dynamic>> matchingChildren = [];
+    for (var child in node.children) {
+      final matchingChild = _containsQuery(child, query);
+      if (matchingChild != null) {
+        matchingChildren.add(matchingChild); // Add only the matching children.
+      }
+    }
+
+    if (matchingChildren.isNotEmpty) {
+      return TreeNode<dynamic>(
+          data: node.data,
+          children:
+              matchingChildren); // Return the node with matching children.
+    }
+
+    return null; // If neither the node nor its children match the query, return null.
+  }
+
+  String _getNodeName(dynamic data) {
+    if (data is AssetEntity) {
+      return data.name;
+    } else if (data is LocationEntity) {
+      return data.name;
+    } else {
+      return 'Unknown';
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -60,8 +123,9 @@ class _AssetsPageState extends State<AssetsPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const TextField(
-            decoration: InputDecoration(
+          TextField(
+            controller: _searchController,
+            decoration: const InputDecoration(
               labelText: 'Search',
               prefixIcon: Icon(Icons.search),
             ),
@@ -88,7 +152,7 @@ class _AssetsPageState extends State<AssetsPage> {
           ),
           const SizedBox(height: 8),
           Expanded(
-            child: FutureBuilder<List<TreeNode>>(
+            child: FutureBuilder<List<TreeNode<dynamic>>>(
               future: futureTreeNodes,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
@@ -98,7 +162,8 @@ class _AssetsPageState extends State<AssetsPage> {
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                   return const Center(child: Text('No assets found.'));
                 } else {
-                  return TreeView(nodes: snapshot.data!);
+                  final filteredNodes = _filterTree(snapshot.data!);
+                  return TreeView(nodes: filteredNodes);
                 }
               },
             ),
