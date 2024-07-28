@@ -1,6 +1,6 @@
 import 'package:tractian_challenge/entities/asset/asset_entity_keys.dart';
 
-class Asset {
+class AssetEntity {
   final String name;
   final String id;
   final String? locationId;
@@ -8,7 +8,7 @@ class Asset {
   final String? sensorType;
   final String? status;
 
-  Asset({
+  AssetEntity({
     required this.name,
     required this.id,
     this.locationId,
@@ -17,8 +17,8 @@ class Asset {
     this.status,
   });
 
-  factory Asset.fromJson(Map<String, dynamic> json) {
-    return Asset(
+  factory AssetEntity.fromJson(Map<String, dynamic> json) {
+    return AssetEntity(
       name: json[AssetEntityKeys.name],
       id: json[AssetEntityKeys.id],
       locationId: json[AssetEntityKeys.locationId],

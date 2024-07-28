@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Sensor 14 - energy",
+    "id": "6a9b41a1b62cbf0062dd8a6f",
+    "locationId": "6a9b41afa2555c0067916b94",
+    "parentId": null,
+    "sensorType": "energy",
+    "status": "operating"
+  },
+  {
+    "name": "Sensor 15 - energy",
+    "id": "6a9b41dbb62cbf0062dd8a72",
+    "locationId": "6a9b41afa2555c0067916b94",
+    "parentId": null,
+    "sensorType": "energy",
+    "status": "operating"
+  }
+]

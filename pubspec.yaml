@@ -62,6 +62,10 @@ flutter:
   assets:
     - assets/
     - assets/units/
+    - assets/units/apex_unit/
+    - assets/units/jaguar_unit/
+    - assets/units/tobias_unit/
+    - assets/units/test_unit/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
