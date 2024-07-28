@@ -1,4 +1,4 @@
-import 'package:tractian_challenge/entities/location/location_entity_keys.dart';
+import 'package:tractian_challenge/common/entities/location/location_entity_keys.dart';
 
 class LocationEntity {
   final String name;

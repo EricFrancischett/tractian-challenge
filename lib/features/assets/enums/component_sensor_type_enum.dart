@@ -1,0 +1,4 @@
+enum ComponentSensorTypeEnum {
+  energy,
+  vibration,
+}

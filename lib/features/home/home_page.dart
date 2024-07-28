@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tractian_challenge/constants/units_assets_constants.dart';
-import 'package:tractian_challenge/features/assets/assets_page.dart';
+import 'package:tractian_challenge/common/enums/units_enum.dart';
+import 'package:tractian_challenge/features/assets/presentation/view/assets_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -23,8 +23,7 @@ class HomePage extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => const AssetsPage(
-                      unitLocations: UnitsAssetsConstants.jaguarLocations,
-                      unitAssets: UnitsAssetsConstants.jaguarAssets,
+                      unit: UnitsEnum.jaguar
                     ),
                   ),
                 );
@@ -37,8 +36,7 @@ class HomePage extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => const AssetsPage(
-                      unitLocations: UnitsAssetsConstants.tobiasLocations,
-                      unitAssets: UnitsAssetsConstants.tobiasAssets,
+                      unit: UnitsEnum.tobias
                     ),
                   ),
                 );
@@ -51,8 +49,7 @@ class HomePage extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => const AssetsPage(
-                      unitLocations: UnitsAssetsConstants.apexLocations,
-                      unitAssets: UnitsAssetsConstants.apexAssets,
+                      unit: UnitsEnum.apex
                     ),
                   ),
                 );
@@ -65,8 +62,7 @@ class HomePage extends StatelessWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => const AssetsPage(
-                      unitLocations: UnitsAssetsConstants.testLocations,
-                      unitAssets: UnitsAssetsConstants.testAssets,
+                      unit: UnitsEnum.test
                     ),
                   ),
                 );

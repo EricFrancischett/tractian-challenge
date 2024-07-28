@@ -1,0 +1,4 @@
+enum ComponentStatusEnum {
+  alert,
+  operating,
+}

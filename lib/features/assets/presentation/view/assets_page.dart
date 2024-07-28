@@ -2,19 +2,18 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tractian_challenge/entities/asset/asset_entity.dart';
-import 'package:tractian_challenge/entities/location/location_entity.dart';
+import 'package:tractian_challenge/common/entities/asset/asset_entity.dart';
+import 'package:tractian_challenge/common/entities/location/location_entity.dart';
+import 'package:tractian_challenge/common/enums/units_enum.dart';
 import 'package:tractian_challenge/features/assets/helpers/tree_builder.dart';
-import 'package:tractian_challenge/entities/tree_node/tree_node.dart';
+import 'package:tractian_challenge/common/entities/tree_node/tree_node.dart';
 import 'package:tractian_challenge/features/assets/components/tree_view.dart';
 
 class AssetsPage extends StatefulWidget {
-  final String unitLocations;
-  final String unitAssets;
+  final UnitsEnum unit;
   const AssetsPage({
     super.key,
-    required this.unitLocations,
-    required this.unitAssets,
+    required this.unit,
   });
 
   @override
@@ -56,13 +55,13 @@ class _AssetsPageState extends State<AssetsPage> {
 
   Future<List<TreeNode<dynamic>>> loadTreeNodes() async {
     // Load assets and locations
-    final jsonAssetsString = await rootBundle.loadString(widget.unitAssets);
+    final jsonAssetsString = await rootBundle.loadString(widget.unit.assets);
     final List<dynamic> jsonAssetsResponse = json.decode(jsonAssetsString);
     final List<AssetEntity> assets =
         jsonAssetsResponse.map((json) => AssetEntity.fromJson(json)).toList();
 
     final jsonLocationsString =
-        await rootBundle.loadString(widget.unitLocations);
+        await rootBundle.loadString(widget.unit.locations);
     final List<dynamic> jsonLocationsResponse =
         json.decode(jsonLocationsString);
     final List<LocationEntity> locations = jsonLocationsResponse
