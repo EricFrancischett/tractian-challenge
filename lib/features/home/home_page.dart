@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
                   context,
                   AppRoutes.assets,
                   arguments: {
-                    'unit': UnitsEnum.jaguar,
+                    AppRoutes.assetPageUnitKey: UnitsEnum.jaguar,
                   },
                 );
               },
@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
                   context,
                   AppRoutes.assets,
                   arguments: {
-                    'unit': UnitsEnum.tobias,
+                    AppRoutes.assetPageUnitKey: UnitsEnum.tobias,
                   },
                 );
               },
@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
                   context,
                   AppRoutes.assets,
                   arguments: {
-                    'unit': UnitsEnum.apex,
+                    AppRoutes.assetPageUnitKey: UnitsEnum.apex,
                   },
                 );
               },
@@ -63,7 +63,7 @@ class HomePage extends StatelessWidget {
                   context,
                   AppRoutes.assets,
                   arguments: {
-                    'unit': UnitsEnum.test,
+                    AppRoutes.assetPageUnitKey: UnitsEnum.test,
                   },
                 );
               },

@@ -11,7 +11,9 @@ class AppRoutes {
     assets: (context) {
       final args =
           ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-      return AssetsPage(unit: args['unit']);
+      return AssetsPage(unit: args[assetPageUnitKey]);
     },
   };
+
+  static const String assetPageUnitKey = 'unit';
 }
