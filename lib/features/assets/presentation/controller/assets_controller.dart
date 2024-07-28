@@ -1,10 +1,12 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'dart:convert';
+import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
-import 'package:flutter/services.dart';
 import 'package:tractian_challenge/common/entities/asset/asset_entity.dart';
 import 'package:tractian_challenge/common/entities/location/location_entity.dart';
+import 'package:tractian_challenge/features/assets/domain/usecases/get_assets_usecase.dart';
+import 'package:tractian_challenge/features/assets/domain/usecases/get_locations_usecase.dart';
+
 import 'package:tractian_challenge/features/assets/presentation/view/helpers/tree_builder.dart';
 import 'package:tractian_challenge/common/entities/tree_node/tree_node.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/helpers/node_data_helper.dart';
@@ -15,6 +17,9 @@ part 'assets_controller.g.dart';
 class AssetsController = _AssetsControllerBase with _$AssetsController;
 
 abstract class _AssetsControllerBase with Store {
+  GetAssetsUsecase getAssetsUsecase = GetIt.I<GetAssetsUsecase>();
+  GetLocationsUsecase getLocationsUsecase = GetIt.I<GetLocationsUsecase>();
+
   @observable
   String searchQuery = '';
 
@@ -45,17 +50,10 @@ abstract class _AssetsControllerBase with Store {
   @action
   Future<void> loadTreeNodes(UnitsEnum unit) async {
     try {
-      final jsonAssetsString = await rootBundle.loadString(unit.assets);
-      final List<dynamic> jsonAssetsResponse = json.decode(jsonAssetsString);
       final List<AssetEntity> assets =
-          jsonAssetsResponse.map((json) => AssetEntity.fromJson(json)).toList();
-
-      final jsonLocationsString = await rootBundle.loadString(unit.locations);
-      final List<dynamic> jsonLocationsResponse =
-          json.decode(jsonLocationsString);
-      final List<LocationEntity> locations = jsonLocationsResponse
-          .map((json) => LocationEntity.fromJson(json))
-          .toList();
+          await getAssetsUsecase.call(assetFilePath: unit.assets);
+      final List<LocationEntity> locations =
+          await getLocationsUsecase.call(locationsFilePath: unit.locations);
 
       // Build the tree
       final treeNodes = TreeBuilder.buildTree(assets, locations);

@@ -1,4 +1,12 @@
 import 'package:get_it/get_it.dart';
+import 'package:tractian_challenge/features/assets/data/datasources/asset_local_datasource.dart';
+import 'package:tractian_challenge/features/assets/data/datasources/location_local_datasource.dart';
+import 'package:tractian_challenge/features/assets/data/repositories/asset_repository_impl.dart';
+import 'package:tractian_challenge/features/assets/data/repositories/location_repository_impl.dart';
+import 'package:tractian_challenge/features/assets/domain/repositories/asset_repository.dart';
+import 'package:tractian_challenge/features/assets/domain/repositories/location_repository.dart';
+import 'package:tractian_challenge/features/assets/domain/usecases/get_assets_usecase.dart';
+import 'package:tractian_challenge/features/assets/domain/usecases/get_locations_usecase.dart';
 import 'package:tractian_challenge/features/assets/presentation/controller/assets_controller.dart';
 
 class GetItServiceLocator {
@@ -7,18 +15,21 @@ class GetItServiceLocator {
 
   static void setUp() {
     // // Data sources
-    // instance.registerLazySingleton<AssetLocalDataSource>(() => AssetLocalDataSource());
-    // instance.registerLazySingleton<LocationLocalDataSource>(() => LocationLocalDataSource());
+    instance.registerFactory<AssetLocalDataSource>(
+        () => AssetLocalDataSourceImpl());
+    instance.registerFactory<LocationLocalDataSource>(
+        () => LocationLocalDataSourceImpl());
 
-    // // Repositories
-    // instance.registerLazySingleton<AssetRepository>(() => AssetRepositoryImpl());
-    // instance.registerLazySingleton<LocationRepository>(() => LocationRepositoryImpl());
+    // Repositories
+    instance.registerFactory<AssetRepository>(() => AssetRepositoryImpl());
+    instance
+        .registerFactory<LocationRepository>(() => LocationRepositoryImpl());
 
-    // // Use cases
-    // instance.registerLazySingleton<GetAssets>(() => GetAssets(instance()));
-    // instance.registerLazySingleton<GetLocations>(() => GetLocations(instance()));
+    // Use cases
+    instance.registerFactory<GetAssetsUsecase>(() => GetAssetsUsecase());
+    instance.registerFactory<GetLocationsUsecase>(() => GetLocationsUsecase());
 
-    // Controllers
-    instance.registerSingleton<AssetsController>(AssetsController());
+    //Controllers
+    instance.registerFactory<AssetsController>(() => AssetsController());
   }
 }
