@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tractian_challenge/common/enums/units_enum.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/assets_page.dart';
+import 'package:tractian_challenge/routes/app_routes.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -20,12 +21,12 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               child: const Text('Jaguar Unit'),
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const AssetsPage(
-                      unit: UnitsEnum.jaguar
-                    ),
-                  ),
+                Navigator.pushNamed(
+                  context,
+                  AppRoutes.assets,
+                  arguments: {
+                    'unit': UnitsEnum.jaguar,
+                  },
                 );
               },
             ),
@@ -33,12 +34,12 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               child: const Text('Tobias Unit'),
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const AssetsPage(
-                      unit: UnitsEnum.tobias
-                    ),
-                  ),
+                Navigator.pushNamed(
+                  context,
+                  AppRoutes.assets,
+                  arguments: {
+                    'unit': UnitsEnum.tobias,
+                  },
                 );
               },
             ),
@@ -46,12 +47,12 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               child: const Text('Apex Unit'),
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const AssetsPage(
-                      unit: UnitsEnum.apex
-                    ),
-                  ),
+                Navigator.pushNamed(
+                  context,
+                  AppRoutes.assets,
+                  arguments: {
+                    'unit': UnitsEnum.apex,
+                  },
                 );
               },
             ),
@@ -59,12 +60,12 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               child: const Text('Test Unit'),
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const AssetsPage(
-                      unit: UnitsEnum.test
-                    ),
-                  ),
+                Navigator.pushNamed(
+                  context,
+                  AppRoutes.assets,
+                  arguments: {
+                    'unit': UnitsEnum.test,
+                  },
                 );
               },
             ),
