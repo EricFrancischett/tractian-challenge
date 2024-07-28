@@ -22,7 +22,7 @@ class LocationRepositoryImpl implements LocationRepository {
             jsonLocations.map((json) => LocationEntity.fromJson(json)).toList();
         return Resource.success(data: locations);
       }
-    } on FormatException catch (error) {
+    } on TypeError catch (error) {
       return Resource.failed(
         error: InvalidFormatException(
           message: 'Invalid JSON format: $error',

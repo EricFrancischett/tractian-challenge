@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:tractian_challenge/core/error/exceptions.dart';
 import 'package:tractian_challenge/core/generics/resource.dart';
@@ -18,13 +19,20 @@ class LocationLocalDataSourceImpl implements LocationLocalDataSource {
       final List<dynamic> jsonLocationsResponse =
           json.decode(jsonLocationsString);
       return Resource.success(data: jsonLocationsResponse);
-    } on PlatformException catch (error) {
+    } on FlutterError catch (error) {
+      if (error.message.contains('Unable to load asset') == true) {
+        return Resource.failed(
+          error: FileNotFoundException(
+            message: 'Asset file not found: $error',
+          ),
+        );
+      }
       return Resource.failed(
-        error: FileNotFoundException(
-          message: 'Location file not found: $error',
+        error: UnknownException(
+          message: 'Unknown error: $error',
         ),
       );
-    } on FormatException catch (error) {
+    } on TypeError catch (error) {
       return Resource.failed(
         error: InvalidFormatException(
           message: 'Invalid JSON format: $error',

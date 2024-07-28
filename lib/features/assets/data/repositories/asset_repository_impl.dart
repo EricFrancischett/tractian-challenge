@@ -22,7 +22,7 @@ class AssetRepositoryImpl implements AssetRepository {
             jsonAssets.map((json) => AssetEntity.fromJson(json)).toList();
         return Resource.success(data: assets);
       }
-    } on FormatException catch (error) {
+    } on TypeError catch (error) {
       return Resource.failed(
         error: InvalidFormatException(
           message: 'Invalid JSON format: $error',
