@@ -1,5 +1,7 @@
 import 'package:tractian_challenge/common/entities/location/location_entity.dart';
+import 'package:tractian_challenge/common/generics/resource.dart';
 
 abstract class LocationRepository {
-  Future<List<LocationEntity>> getLocations({required String locationsFilePath});
+  Future<Resource<List<LocationEntity>, Exception>> getLocations(
+      {required String locationsFilePath});
 }

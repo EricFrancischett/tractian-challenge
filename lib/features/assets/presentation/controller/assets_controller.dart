@@ -50,14 +50,23 @@ abstract class _AssetsControllerBase with Store {
   @action
   Future<void> loadTreeNodes(UnitsEnum unit) async {
     try {
-      final List<AssetEntity> assets =
+      final resourceAssets =
           await getAssetsUsecase.call(assetFilePath: unit.assets);
-      final List<LocationEntity> locations =
+      final resourceLocations =
           await getLocationsUsecase.call(locationsFilePath: unit.locations);
 
-      // Build the tree
-      final treeNodes = TreeBuilder.buildTree(assets, locations);
-      futureTreeNodes = ObservableFuture.value(treeNodes);
+      if (resourceAssets.hasError || resourceLocations.hasError) {
+        final Object? error = resourceAssets.error ?? resourceLocations.error;
+        futureTreeNodes = ObservableFuture.error(
+            error ?? Exception('An error occurred while fetching data.'));
+      } else {
+        final List<AssetEntity> assets = resourceAssets.data!;
+        final List<LocationEntity> locations = resourceLocations.data!;
+
+        // Build the tree
+        final treeNodes = TreeBuilder.buildTree(assets, locations);
+        futureTreeNodes = ObservableFuture.value(treeNodes);
+      }
     } catch (error) {
       futureTreeNodes = ObservableFuture.error(error);
     }
