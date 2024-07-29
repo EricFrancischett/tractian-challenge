@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:tractian_challenge/core/enums/units_enum.dart';
+import 'package:tractian_challenge/core/widgets/custom_scaffold.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/components/tree_view.dart';
 import 'package:tractian_challenge/features/assets/presentation/controller/assets_controller.dart';
 
@@ -40,10 +41,8 @@ class _AssetsPageState extends State<AssetsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Assets'),
-      ),
+    return CustomScaffold(
+      pageTitle: 'Assets',
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,

@@ -38,6 +38,7 @@ dependencies:
   mobx: ^2.3.3+2
   flutter_mobx: ^2.2.1+1
   get_it: ^7.7.0
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +72,9 @@ flutter:
     - assets/units/jaguar_unit/
     - assets/units/tobias_unit/
     - assets/units/test_unit/
+    - assets/icons/
+    - assets/icons/logo.svg
+    - assets/icons/logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
