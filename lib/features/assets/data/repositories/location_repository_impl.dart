@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:tractian_challenge/core/entities/location/location_entity.dart';
 import 'package:tractian_challenge/core/error/exceptions.dart';
@@ -19,7 +20,7 @@ class LocationRepositoryImpl implements LocationRepository {
       } else {
         final List<dynamic> jsonLocations = resource.data!;
         final List<LocationEntity> locations =
-            jsonLocations.map((json) => LocationEntity.fromJson(json)).toList();
+            await compute(parseLocations, jsonLocations);
         return Resource.success(data: locations);
       }
     } on TypeError catch (error) {
@@ -36,4 +37,8 @@ class LocationRepositoryImpl implements LocationRepository {
       );
     }
   }
+}
+
+List<LocationEntity> parseLocations(List<dynamic> jsonLocations) {
+  return jsonLocations.map((json) => LocationEntity.fromJson(json)).toList();
 }

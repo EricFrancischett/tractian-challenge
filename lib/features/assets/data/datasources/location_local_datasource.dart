@@ -1,8 +1,7 @@
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import 'package:tractian_challenge/core/error/exceptions.dart';
 import 'package:tractian_challenge/core/generics/resource.dart';
+import 'package:tractian_challenge/core/services/load_file_services.dart';
 
 abstract class LocationLocalDataSource {
   Future<Resource<List<dynamic>, Exception>> getLocations(
@@ -14,10 +13,8 @@ class LocationLocalDataSourceImpl implements LocationLocalDataSource {
   Future<Resource<List<dynamic>, Exception>> getLocations(
       {required String locationsFilePath}) async {
     try {
-      final jsonLocationsString =
-          await rootBundle.loadString(locationsFilePath);
       final List<dynamic> jsonLocationsResponse =
-          json.decode(jsonLocationsString);
+          await LoadFileServices.loadFile(locationsFilePath);
       return Resource.success(data: jsonLocationsResponse);
     } on FlutterError catch (error) {
       if (error.message.contains('Unable to load asset') == true) {
