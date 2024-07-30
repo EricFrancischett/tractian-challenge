@@ -5,6 +5,7 @@ import 'package:mobx/mobx.dart';
 import 'package:tractian_challenge/core/enums/units_enum.dart';
 import 'package:tractian_challenge/core/widgets/custom_scaffold.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/components/assets_text_field.dart';
+import 'package:tractian_challenge/features/assets/presentation/view/components/empty_tree_view_widget.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/components/selectable_assets_button.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/components/tree_view/tree_view.dart';
 import 'package:tractian_challenge/features/assets/presentation/controller/assets_controller.dart';
@@ -92,15 +93,20 @@ class _AssetsPageState extends State<AssetsPage> {
 
                 if (controller.futureTreeNodes!.status ==
                     FutureStatus.rejected) {
-                  return Center(
-                      child:
-                          Text('Error: ${controller.futureTreeNodes!.error}'));
+                  return const EmptyTreeViewWidget(
+                    message: 'Houve um erro ao carregar os dados :(',
+                    icon: Icons.error_rounded,
+                  );
                 }
 
                 if (controller.futureTreeNodes!.status ==
                         FutureStatus.fulfilled &&
-                    controller.futureTreeNodes!.value!.isEmpty) {
-                  return const Center(child: Text('No assets found.'));
+                    (controller.futureTreeNodes!.value!.isEmpty ||
+                        controller.filteredNodes.isEmpty)) {
+                  return const EmptyTreeViewWidget(
+                    message: 'Nenhum item encontrado :(',
+                    icon: Icons.playlist_remove_outlined,
+                  );
                 }
 
                 return TreeView(nodes: controller.filteredNodes);
