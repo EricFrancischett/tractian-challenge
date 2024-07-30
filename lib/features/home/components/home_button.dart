@@ -14,11 +14,12 @@ class HomeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  return ElevatedButton(
+    return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: ColorsConstants.lightBlue,
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
         foregroundColor: ColorsConstants.white,
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
@@ -32,17 +33,33 @@ class HomeButton extends StatelessWidget {
       },
       child: Row(
         children: [
-          const Icon(
-            Icons.list_alt_rounded,
-            size: 22,
-            color: ColorsConstants.white,
+          Container(
+            width: 34,
+            height: 34,
+            decoration: const BoxDecoration(
+              color: ColorsConstants.lightBlue,
+              borderRadius: BorderRadius.all(Radius.circular(4)),
+            ),
+            child: const Icon(
+              Icons.factory_rounded,
+              size: 22,
+              color: ColorsConstants.darkBlue,
+            ),
           ),
           const SizedBox(width: 16),
           Text(
             title,
             style: const TextStyle(
+              fontSize: 18,
               color: ColorsConstants.white,
+              fontWeight: FontWeight.normal,
             ),
+          ),
+          const Spacer(),
+          Icon(
+            Icons.arrow_forward_ios_rounded,
+            size: 16,
+            color: ColorsConstants.white.withOpacity(0.5),
           ),
         ],
       ),
