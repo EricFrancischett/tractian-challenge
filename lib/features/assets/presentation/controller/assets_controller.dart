@@ -111,24 +111,21 @@ abstract class _AssetsControllerBase with Store {
             .toLowerCase()
             .contains(query.toLowerCase()) &&
         matchesFilter) {
-      return node; // If the current node matches the query and filters, return it.
+      return node;
     }
 
     List<TreeNode<dynamic>> matchingChildren = [];
     for (var child in node.children) {
       final matchingChild = _containsQuery(child, query);
       if (matchingChild != null) {
-        matchingChildren.add(matchingChild); // Add only the matching children.
+        matchingChildren.add(matchingChild);
       }
     }
 
     if (matchingChildren.isNotEmpty) {
-      return TreeNode<dynamic>(
-          data: node.data,
-          children:
-              matchingChildren); // Return the node with matching children.
+      return TreeNode<dynamic>(data: node.data, children: matchingChildren);
     }
 
-    return null; // If neither the node nor its children match the query and filters, return null.
+    return null;
   }
 }

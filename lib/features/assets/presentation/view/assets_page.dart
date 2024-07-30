@@ -6,7 +6,7 @@ import 'package:tractian_challenge/core/enums/units_enum.dart';
 import 'package:tractian_challenge/core/widgets/custom_scaffold.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/components/assets_text_field.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/components/selectable_assets_button.dart';
-import 'package:tractian_challenge/features/assets/presentation/view/components/tree_view.dart';
+import 'package:tractian_challenge/features/assets/presentation/view/components/tree_view/tree_view.dart';
 import 'package:tractian_challenge/features/assets/presentation/controller/assets_controller.dart';
 
 class AssetsPage extends StatefulWidget {
