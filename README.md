@@ -1,6 +1,6 @@
 # Tractian Challenge
 
-This repository contains a Flutter application designed to manage and display asset information for different units. The project uses MobX for state management and GetIt for dependency injection. The assets and locations data are loaded from JSON files, and the application supports filtering and lazy loading to handle large datasets efficiently.
+This repository contains a Flutter application designed to manage and display asset information for different units. The project uses MobX for state management and GetIt for dependency injection. The assets and locations data are loaded from JSON files.
 
 ## Table of Contents
 
@@ -33,13 +33,13 @@ This repository contains a Flutter application designed to manage and display as
 
 ### **compute method**
 
-- A aplicação trabalha com uma grande quantidade de informações, para evitar travamentos e crashes, foram implementadas funções compute() nos repositorios que utilizam outra thread do processador para não acumular atividades na thread principal que lida com a renderização da tela
+The application handles a large amount of data, and to avoid lags and crashes, `compute()` functions were implemented in the repositories. These functions use another thread to prevent accumulating tasks on the main thread that deals with rendering the screen.
 
 ```dart
    final List<AssetEntity> assets = await compute(parseAssets, jsonAssets);
    ```
 
-- *Não foi usado Isolates na função de carregar os dados sistema devido ao Flutter já fazer isso automaticamente:*
+- *Isolates were not used in the function to load system data because Flutter does this automatically:*
 
     `"If the string is larger than 50 KB, the decoding process is delegated to an isolate to avoid jank on the main thread."`
 
@@ -47,7 +47,7 @@ This repository contains a Flutter application designed to manage and display as
 
 ### Lazy loading on ListView.builder()
 
-- Devido a visualização em arvore, dependendo da quatidade de locations, assets e components, a tela pode custar para ser renderizada, para ajudar nesta questão foi implementada uma renderização de 20 em 20 itens, e cada novo bloco é chamado quando o usuário scrolls até o fim da lista. Isso foi implementado para não sobrecarregar a tela com muitos itens a serem renderizados.
+- Due to the tree view, depending on the number of locations, assets, and components, the screen may take time to render. To help in this issue, the application renders 20 items at a time, and each new block is loaded when the user scrolls to the end of the list. This was done to avoid overloading the screen with too many items to render.
 
 ```dart
     _scrollController = ScrollController();
