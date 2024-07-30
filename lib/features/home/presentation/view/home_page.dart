@@ -3,8 +3,8 @@ import 'package:tractian_challenge/core/adapters/svg_adapter.dart';
 import 'package:tractian_challenge/core/constants/assets_constants.dart';
 import 'package:tractian_challenge/core/constants/colors_constants.dart';
 import 'package:tractian_challenge/core/enums/units_enum.dart';
-import 'package:tractian_challenge/features/home/components/home_button.dart';
-import 'package:tractian_challenge/features/home/components/home_header.dart';
+import 'package:tractian_challenge/features/home/presentation/view/components/home_button.dart';
+import 'package:tractian_challenge/features/home/presentation/view/components/home_header.dart';
 import 'package:tractian_challenge/routes/app_routes.dart';
 
 class HomePage extends StatelessWidget {

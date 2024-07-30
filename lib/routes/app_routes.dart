@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/assets_page.dart';
-import 'package:tractian_challenge/features/home/home_page.dart';
+import 'package:tractian_challenge/features/home/presentation/view/home_page.dart';
 
 class AppRoutes {
   static const String home = '/';
