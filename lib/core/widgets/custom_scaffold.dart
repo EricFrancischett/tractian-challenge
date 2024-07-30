@@ -3,10 +3,12 @@ import 'package:tractian_challenge/core/widgets/custom_app_bar.dart';
 
 class CustomScaffold extends StatelessWidget {
   final String? pageTitle;
+  final EdgeInsetsGeometry padding;
   final Widget body;
   const CustomScaffold({
     super.key,
     this.pageTitle,
+    this.padding = const EdgeInsets.all(24.0),
     required this.body,
   });
 
@@ -18,7 +20,7 @@ class CustomScaffold extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: padding,
           child: body,
         ),
       ),

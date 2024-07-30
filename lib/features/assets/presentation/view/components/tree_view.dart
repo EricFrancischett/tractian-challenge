@@ -48,7 +48,7 @@ class TreeView extends StatelessWidget {
           title: Text(
             NodeDataHelper.getNodeName(node.data),
             style: const TextStyle(
-              fontSize: 12,
+              fontSize: 14,
             ),
           ),
         ),
@@ -61,7 +61,7 @@ class TreeView extends StatelessWidget {
           title: Text(
             NodeDataHelper.getNodeName(node.data),
             style: const TextStyle(
-              fontSize: 12,
+              fontSize: 14,
             ),
           ),
           children: node.children.map((child) => _buildNode(child)).toList(),

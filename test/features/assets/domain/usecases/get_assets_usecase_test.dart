@@ -16,7 +16,7 @@ main() {
 
       GetIt.instance.registerFactory<AssetRepository>(() => repositoryStub);
 
-      final sut = GetAssetsUsecase();
+      final sut = DefaultGetAssetsUsecase();
 
       final List<AssetEntity> assetsDummy = [
         AssetEntity(

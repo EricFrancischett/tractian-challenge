@@ -26,8 +26,9 @@ class GetItServiceLocator {
         .registerFactory<LocationRepository>(() => LocationRepositoryImpl());
 
     // Use cases
-    instance.registerFactory<GetAssetsUsecase>(() => GetAssetsUsecase());
-    instance.registerFactory<GetLocationsUsecase>(() => GetLocationsUsecase());
+    instance.registerFactory<GetAssetsUsecase>(() => DefaultGetAssetsUsecase());
+    instance.registerFactory<GetLocationsUsecase>(
+        () => DefaultGetLocationsUsecase());
 
     //Controllers
     instance.registerFactory<AssetsController>(() => AssetsController());

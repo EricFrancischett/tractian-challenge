@@ -4,9 +4,15 @@ import 'package:tractian_challenge/core/error/exceptions.dart';
 import 'package:tractian_challenge/core/generics/resource.dart';
 import 'package:tractian_challenge/features/assets/domain/repositories/location_repository.dart';
 
-class GetLocationsUsecase {
-  LocationRepository locationRepository = GetIt.I<LocationRepository>();
+abstract class GetLocationsUsecase {
+  Future<Resource<List<LocationEntity>, Exception>> call(
+      {required String locationsFilePath});
+}
 
+class DefaultGetLocationsUsecase implements GetLocationsUsecase {
+  final locationRepository = GetIt.I<LocationRepository>();
+
+  @override
   Future<Resource<List<LocationEntity>, Exception>> call(
       {required String locationsFilePath}) async {
     try {

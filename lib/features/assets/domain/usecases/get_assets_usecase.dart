@@ -4,9 +4,15 @@ import 'package:tractian_challenge/core/error/exceptions.dart';
 import 'package:tractian_challenge/core/generics/resource.dart';
 import 'package:tractian_challenge/features/assets/domain/repositories/asset_repository.dart';
 
-class GetAssetsUsecase {
+abstract class GetAssetsUsecase {
+  Future<Resource<List<AssetEntity>, Exception>> call(
+      {required String assetFilePath});
+}
+
+class DefaultGetAssetsUsecase implements GetAssetsUsecase {
   AssetRepository assetRepository = GetIt.I<AssetRepository>();
 
+  @override
   Future<Resource<List<AssetEntity>, Exception>> call(
       {required String assetFilePath}) async {
     try {

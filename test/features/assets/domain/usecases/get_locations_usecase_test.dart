@@ -16,7 +16,7 @@ main() {
 
       GetIt.instance.registerFactory<LocationRepository>(() => repositoryStub);
 
-      final sut = GetLocationsUsecase();
+      final sut = DefaultGetLocationsUsecase();
 
       final List<LocationEntity> assetsDummy = [
         LocationEntity(

@@ -1,52 +1,49 @@
-// import 'package:get_it/get_it.dart';
-// import 'package:mocktail/mocktail.dart';
-// import 'package:tractian_challenge/features/assets/data/datasources/asset_local_datasource.dart';
-// import 'package:tractian_challenge/features/assets/data/datasources/location_local_datasource.dart';
-// import 'package:tractian_challenge/features/assets/domain/repositories/asset_repository.dart';
-// import 'package:tractian_challenge/features/assets/domain/repositories/location_repository.dart';
-// import 'package:tractian_challenge/features/assets/domain/usecases/get_assets_usecase.dart';
-// import 'package:tractian_challenge/features/assets/domain/usecases/get_locations_usecase.dart';
-// import 'package:tractian_challenge/features/assets/presentation/controller/assets_controller.dart';
+import 'package:get_it/get_it.dart';
+import 'package:mockito/mockito.dart';
+import 'package:tractian_challenge/features/assets/data/datasources/asset_local_datasource.dart';
+import 'package:tractian_challenge/features/assets/data/datasources/location_local_datasource.dart';
+import 'package:tractian_challenge/features/assets/domain/repositories/asset_repository.dart';
+import 'package:tractian_challenge/features/assets/domain/repositories/location_repository.dart';
+import 'package:tractian_challenge/features/assets/domain/usecases/get_assets_usecase.dart';
+import 'package:tractian_challenge/features/assets/domain/usecases/get_locations_usecase.dart';
+import 'package:tractian_challenge/features/assets/presentation/controller/assets_controller.dart';
 
-// class MockAssetLocalDataSource extends Mock implements AssetLocalDataSource {}
+import '../features/home/home_page_test.dart';
 
-// class MockLocationLocalDataSource extends Mock
-//     implements LocationLocalDataSource {}
+class MockAssetLocalDataSource extends Mock implements AssetLocalDataSource {}
 
-// class MockAssetRepository extends Mock implements AssetRepository {}
+class MockLocationLocalDataSource extends Mock
+    implements LocationLocalDataSource {}
 
-// class MockLocationRepository extends Mock implements LocationRepository {}
+class MockAssetRepository extends Mock implements AssetRepository {}
 
-// class MockGetAssetsUsecase extends Mock implements GetAssetsUsecase {}
+class MockLocationRepository extends Mock implements LocationRepository {}
 
-// class MockGetLocationsUsecase extends Mock implements GetLocationsUsecase {}
+class MockGetAssetsUsecase extends Mock implements GetAssetsUsecase {}
 
-// class MockAssetsController extends Mock implements AssetsController {}
+class MockGetLocationsUsecase extends Mock implements GetLocationsUsecase {}
 
-// abstract class GetItTesterHelper {
-//   static Future<void> registerAllMocks() async {
-//     final AssetLocalDataSource mockAssetLocalDataSource =
-//         MockAssetLocalDataSource();
-//     final LocationLocalDataSource mockLocationLocalDataSource =
-//         MockLocationLocalDataSource();
-//     final AssetRepository mockAssetRepository = MockAssetRepository();
-//     final LocationRepository mockLocationRepository = MockLocationRepository();
-//     final GetAssetsUsecase mockGetAssetsUsecase = MockGetAssetsUsecase();
-//     final GetLocationsUsecase mockGetLocationsUsecase =
-//         MockGetLocationsUsecase();
-//     final AssetsController mockAssetsController = MockAssetsController();
+class GetItTesterHelper {
+  static Future<void> registerAllMocks() async {
+    final AssetLocalDataSource mockAssetLocalDataSource =
+        MockAssetLocalDataSource();
+    final LocationLocalDataSource mockLocationLocalDataSource =
+        MockLocationLocalDataSource();
+    final AssetRepository mockAssetRepository = MockAssetRepository();
+    final LocationRepository mockLocationRepository = MockLocationRepository();
+    final GetAssetsUsecase mockGetAssetsUsecase = GetAssetsUseCaseStub();
+    final GetLocationsUsecase mockGetLocationsUsecase =
+        GetLocationsUseCaseStub();
 
-//     await GetIt.I.reset();
+    GetIt.I
+      ..registerSingleton<AssetLocalDataSource>(mockAssetLocalDataSource)
+      ..registerSingleton<LocationLocalDataSource>(mockLocationLocalDataSource)
+      ..registerSingleton<AssetRepository>(mockAssetRepository)
+      ..registerSingleton<LocationRepository>(mockLocationRepository)
+      ..registerSingleton<GetAssetsUsecase>(mockGetAssetsUsecase)
+      ..registerSingleton<GetLocationsUsecase>(mockGetLocationsUsecase)
+      ..registerSingleton<AssetsController>(AssetsController());
 
-//     GetIt.I
-//       ..registerSingleton<AssetLocalDataSource>(mockAssetLocalDataSource)
-//       ..registerSingleton<LocationLocalDataSource>(mockLocationLocalDataSource)
-//       ..registerSingleton<AssetRepository>(mockAssetRepository)
-//       ..registerSingleton<LocationRepository>(mockLocationRepository)
-//       ..registerSingleton<GetAssetsUsecase>(mockGetAssetsUsecase)
-//       ..registerSingleton<GetLocationsUsecase>(mockGetLocationsUsecase)
-//       ..registerSingleton<AssetsController>(mockAssetsController);
-
-//     return GetIt.I.allReady();
-//   }
-// }
+    return await GetIt.I.allReady();
+  }
+}

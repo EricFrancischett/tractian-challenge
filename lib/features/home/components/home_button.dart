@@ -14,7 +14,7 @@ class HomeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+  return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: ColorsConstants.lightBlue,
         foregroundColor: ColorsConstants.white,

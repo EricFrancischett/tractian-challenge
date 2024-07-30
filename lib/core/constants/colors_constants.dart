@@ -6,4 +6,6 @@ class ColorsConstants {
   static const darkBlue = Color(0xFF17192D);
   static const lightBlue = Color(0xFF2188FF);
   static const white = Color(0xFFFFFFFF);
+  static const gray = Color(0xFFEAEFF3);
+  static const darkGray = Color(0xFF8E98A3);
 }
