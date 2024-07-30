@@ -4,16 +4,16 @@ import 'package:tractian_challenge/core/generics/resource.dart';
 import 'package:tractian_challenge/core/services/load_file_services.dart';
 
 abstract class LocationLocalDataSource {
-  Future<Resource<List<dynamic>, Exception>> getLocations(
+  Future<Resource<List<Map<String, dynamic>>, Exception>> getLocations(
       {required String locationsFilePath});
 }
 
 class LocationLocalDataSourceImpl implements LocationLocalDataSource {
   @override
-  Future<Resource<List<dynamic>, Exception>> getLocations(
+  Future<Resource<List<Map<String, dynamic>>, Exception>> getLocations(
       {required String locationsFilePath}) async {
     try {
-      final List<dynamic> jsonLocationsResponse =
+      final List<Map<String, dynamic>> jsonLocationsResponse =
           await LoadFileServices.loadFile(locationsFilePath);
       return Resource.success(data: jsonLocationsResponse);
     } on FlutterError catch (error) {

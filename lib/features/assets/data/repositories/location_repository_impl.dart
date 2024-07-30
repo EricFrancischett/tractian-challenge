@@ -18,7 +18,7 @@ class LocationRepositoryImpl implements LocationRepository {
       if (resource.hasError) {
         return Resource.failed(error: resource.error);
       } else {
-        final List<dynamic> jsonLocations = resource.data!;
+        final List<Map<String, dynamic>> jsonLocations = resource.data!;
         final List<LocationEntity> locations =
             await compute(parseLocations, jsonLocations);
         return Resource.success(data: locations);
@@ -39,6 +39,6 @@ class LocationRepositoryImpl implements LocationRepository {
   }
 }
 
-List<LocationEntity> parseLocations(List<dynamic> jsonLocations) {
+List<LocationEntity> parseLocations(List<Map<String, dynamic>> jsonLocations) {
   return jsonLocations.map((json) => LocationEntity.fromJson(json)).toList();
 }

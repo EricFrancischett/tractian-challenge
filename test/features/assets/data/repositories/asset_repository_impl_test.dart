@@ -19,7 +19,7 @@ main() {
 
       final sut = AssetRepositoryImpl();
 
-      final List<dynamic> assetsDummy = [
+      final List<Map<String, dynamic>> assetsDummy = [
         {
           "name": "Sensor 14 - energy",
           "id": "6a9b41a1b62cbf0062dd8a6f",
@@ -75,10 +75,10 @@ main() {
 }
 
 class AssetLocalDataSourceStub implements AssetLocalDataSource {
-  late Resource<List<dynamic>, Exception> resource;
+  late Resource<List<Map<String, dynamic>>, Exception> resource;
 
   @override
-  Future<Resource<List, Exception>> getAssets(
+  Future<Resource<List<Map<String, dynamic>>, Exception>> getAssets(
       {required String assetFilePath}) async {
     return resource;
   }

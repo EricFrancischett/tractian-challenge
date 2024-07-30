@@ -18,7 +18,7 @@ class AssetRepositoryImpl implements AssetRepository {
       if (resource.hasError) {
         return Resource.failed(error: resource.error);
       } else {
-        final List<dynamic> jsonAssets = resource.data!;
+        final List<Map<String, dynamic>> jsonAssets = resource.data!;
         final List<AssetEntity> assets = await compute(parseAssets, jsonAssets);
         return Resource.success(data: assets);
       }
@@ -38,6 +38,6 @@ class AssetRepositoryImpl implements AssetRepository {
   }
 }
 
-List<AssetEntity> parseAssets(List<dynamic> jsonAssets) {
+List<AssetEntity> parseAssets(List<Map<String, dynamic>> jsonAssets) {
   return jsonAssets.map((json) => AssetEntity.fromJson(json)).toList();
 }

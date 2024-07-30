@@ -19,7 +19,7 @@ main() {
 
       final sut = LocationRepositoryImpl();
 
-      final List<dynamic> assetsDummy = [
+      final List<Map<String, dynamic>> assetsDummy = [
         {
           "name": "Corn Cooking Facility",
           "id": "6a9b4171b62cbf0062dd8a67",
@@ -71,10 +71,10 @@ main() {
 }
 
 class LocationLocalDataSourceStub implements LocationLocalDataSource {
-  late Resource<List<dynamic>, Exception> resource;
+  late Resource<List<Map<String, dynamic>>, Exception> resource;
 
   @override
-  Future<Resource<List, Exception>> getLocations(
+  Future<Resource<List<Map<String, dynamic>>, Exception>> getLocations(
       {required String locationsFilePath}) async {
     return resource;
   }

@@ -4,16 +4,16 @@ import 'package:tractian_challenge/core/generics/resource.dart';
 import 'package:tractian_challenge/core/services/load_file_services.dart';
 
 abstract class AssetLocalDataSource {
-  Future<Resource<List<dynamic>, Exception>> getAssets(
+  Future<Resource<List<Map<String, dynamic>>, Exception>> getAssets(
       {required String assetFilePath});
 }
 
 class AssetLocalDataSourceImpl implements AssetLocalDataSource {
   @override
-  Future<Resource<List<dynamic>, Exception>> getAssets(
+  Future<Resource<List<Map<String, dynamic>>, Exception>> getAssets(
       {required String assetFilePath}) async {
     try {
-      final List<dynamic> jsonAssetsResponse =
+      final List<Map<String, dynamic>> jsonAssetsResponse =
           await LoadFileServices.loadFile(assetFilePath);
       return Resource.success(data: jsonAssetsResponse);
     } on FlutterError catch (error) {

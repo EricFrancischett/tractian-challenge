@@ -22,7 +22,7 @@ main() {
         final resource = await sut.getAssets(assetFilePath: mockJsonPath);
         //Then
         expect(resource.status, Status.success);
-        expect(resource.data, isA<List<dynamic>>());
+        expect(resource.data, isA<List<Map<String, dynamic>>>());
         expect(resource.data?.length, 8);
       });
 
