@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tractian_challenge/core/adapters/svg_adapter.dart';
 import 'package:tractian_challenge/core/constants/assets_constants.dart';
 import 'package:tractian_challenge/core/constants/colors_constants.dart';
@@ -12,59 +13,62 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: ColorsConstants.homeGradient,
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 25),
-                  child: HomeHeader(),
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                HomeButton(
-                  title: UnitsEnum.jaguar.unitName,
-                  routeToRedirect: AppRoutes.assets,
-                  arguments: const {
-                    AppRoutes.assetPageUnitKey: UnitsEnum.jaguar,
-                  },
-                ),
-                const SizedBox(height: 16),
-                HomeButton(
-                  title: UnitsEnum.tobias.unitName,
-                  routeToRedirect: AppRoutes.assets,
-                  arguments: const {
-                    AppRoutes.assetPageUnitKey: UnitsEnum.tobias,
-                  },
-                ),
-                const SizedBox(height: 16),
-                HomeButton(
-                  title: UnitsEnum.apex.unitName,
-                  routeToRedirect: AppRoutes.assets,
-                  arguments: const {
-                    AppRoutes.assetPageUnitKey: UnitsEnum.apex,
-                  },
-                ),
-                const Spacer(),
-                const Hero(
-                  tag: 'logo',
-                  child: SvgAdapter(
-                    path: AssetsConstants.logo,
-                    width: 200,
-                    color: Colors.white,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light,
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: ColorsConstants.homeGradient,
+        ),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 25),
+                    child: HomeHeader(),
                   ),
-                ),
-              ],
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  HomeButton(
+                    title: UnitsEnum.jaguar.unitName,
+                    routeToRedirect: AppRoutes.assets,
+                    arguments: const {
+                      AppRoutes.assetPageUnitKey: UnitsEnum.jaguar,
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  HomeButton(
+                    title: UnitsEnum.tobias.unitName,
+                    routeToRedirect: AppRoutes.assets,
+                    arguments: const {
+                      AppRoutes.assetPageUnitKey: UnitsEnum.tobias,
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  HomeButton(
+                    title: UnitsEnum.apex.unitName,
+                    routeToRedirect: AppRoutes.assets,
+                    arguments: const {
+                      AppRoutes.assetPageUnitKey: UnitsEnum.apex,
+                    },
+                  ),
+                  const Spacer(),
+                  const Hero(
+                    tag: 'logo',
+                    child: SvgAdapter(
+                      path: AssetsConstants.logo,
+                      width: 200,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

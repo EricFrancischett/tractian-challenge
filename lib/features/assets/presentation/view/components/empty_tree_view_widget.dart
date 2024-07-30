@@ -21,16 +21,16 @@ class EmptyTreeViewWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            height: 100,
-            width: 100,
+            height: 70,
+            width: 70,
             decoration: BoxDecoration(
               color: ColorsConstants.lightBlue.withOpacity(0.2),
               shape: BoxShape.circle,
             ),
             child: Center(
               child: Container(
-                height: 70,
-                width: 70,
+                height: 50,
+                width: 50,
                 decoration: BoxDecoration(
                   color: ColorsConstants.darkBlue.withOpacity(0.2),
                   shape: BoxShape.circle,
@@ -39,7 +39,7 @@ class EmptyTreeViewWidget extends StatelessWidget {
                   child: Icon(
                     icon,
                     color: ColorsConstants.darkBlue,
-                    size: 40,
+                    size: 30,
                   ),
                 ),
               ),
@@ -51,7 +51,7 @@ class EmptyTreeViewWidget extends StatelessWidget {
             textAlign: TextAlign.center,
             style: const TextStyle(
               color: ColorsConstants.darkBlue,
-              fontSize: 28,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tractian_challenge/core/constants/colors_constants.dart';
 import 'package:tractian_challenge/core/widgets/custom_app_bar.dart';
 
@@ -15,15 +16,18 @@ class CustomScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        title: pageTitle,
-      ),
-      backgroundColor: ColorsConstants.white,
-      body: SafeArea(
-        child: Padding(
-          padding: padding,
-          child: body,
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark,
+      child: Scaffold(
+        appBar: CustomAppBar(
+          title: pageTitle,
+        ),
+        backgroundColor: ColorsConstants.white,
+        body: SafeArea(
+          child: Padding(
+            padding: padding,
+            child: body,
+          ),
         ),
       ),
     );

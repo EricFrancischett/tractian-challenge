@@ -16,49 +16,15 @@ class TreeView extends StatefulWidget {
 }
 
 class _TreeViewState extends State<TreeView> {
-  late ScrollController _scrollController;
-  List<TreeNode> displayedNodes = [];
-  final int _increment = 20;
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController = ScrollController();
-    _scrollController.addListener(_onScroll);
-    _loadMoreNodes();
-  }
-
-  void _onScroll() {
-    if (_scrollController.position.pixels <=
-        _scrollController.position.maxScrollExtent - 100) {
-      _loadMoreNodes();
-    }
-  }
-
-  void _loadMoreNodes() {
-    setState(() {
-      final startIndex = displayedNodes.length;
-      final endIndex =
-          (displayedNodes.length + _increment).clamp(0, widget.nodes.length);
-      displayedNodes.addAll(widget.nodes.getRange(startIndex, endIndex));
-    });
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24),
       child: ListView.separated(
-        controller: _scrollController,
-        itemCount: displayedNodes.length,
+        itemCount: widget.nodes.length,
         itemBuilder: (context, index) {
-          return TreeViewBuilder.buildNode(displayedNodes[index], context);
+          final node = widget.nodes[index];
+          return TreeViewBuilder.buildNode(node, context);
         },
         separatorBuilder: (context, index) => const SizedBox(
           height: 20,
