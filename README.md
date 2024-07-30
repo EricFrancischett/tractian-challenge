@@ -10,6 +10,7 @@ This repository contains a Flutter application designed to manage and display as
 - [Installation](#installation)
 - [Usage](#usage)
 - [Testing](#testing)
+- [UI Changes](#ui-changes)
 
 ## Features
 
@@ -162,3 +163,27 @@ lib/
    ```bash
    flutter test
    ```
+
+## UI Changes
+
+### Challenge version
+
+- On the challenge UI version some UX problems were found:
+
+1. Home Page - No instructins to the user about home page button functions.
+
+2. Assets Page - No subtitles related to the icons in the tree nodes.
+
+3. Assets Page - No title telling to the user which unit page he is.
+
+![alt text](/readme_files/old_version.png)
+
+### Current version
+
+- Added home page instruction informing the user that the home button redirects to the unit page.
+
+- Using the same icon to button filter and node tree icon to relate the functions
+
+- Added assests page title informing the uses which unit he is managing
+
+![alt text](/readme_files/new_version.png)
