@@ -4,25 +4,26 @@ enum UnitsEnum {
   apex(
     assets: UnitsAssetsConstants.apexAssets,
     locations: UnitsAssetsConstants.apexLocations,
+    unitName: 'Apex Unit',
   ),
   jaguar(
     assets: UnitsAssetsConstants.jaguarAssets,
     locations: UnitsAssetsConstants.jaguarLocations,
+    unitName: 'Jaguar Unit',
   ),
   tobias(
     assets: UnitsAssetsConstants.tobiasAssets,
     locations: UnitsAssetsConstants.tobiasLocations,
-  ),
-  test(
-    assets: UnitsAssetsConstants.testAssets,
-    locations: UnitsAssetsConstants.testLocations,
+    unitName: 'Tobias Unit',
   );
 
   const UnitsEnum({
     required this.assets,
     required this.locations,
+    required this.unitName,
   });
 
   final String assets;
   final String locations;
+  final String unitName;
 }

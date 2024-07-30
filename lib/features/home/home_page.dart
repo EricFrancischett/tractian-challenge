@@ -16,50 +16,53 @@ class HomePage extends StatelessWidget {
       decoration: const BoxDecoration(
         gradient: ColorsConstants.homeGradient,
       ),
-      child: const Scaffold(
+      child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(top: 25),
                   child: HomeHeader(),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 HomeButton(
-                  title: 'Jaguar Unit',
+                  title: UnitsEnum.jaguar.unitName,
                   routeToRedirect: AppRoutes.assets,
-                  arguments: {
+                  arguments: const {
                     AppRoutes.assetPageUnitKey: UnitsEnum.jaguar,
                   },
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 HomeButton(
-                  title: 'Tobias Unit',
+                  title: UnitsEnum.tobias.unitName,
                   routeToRedirect: AppRoutes.assets,
-                  arguments: {
+                  arguments: const {
                     AppRoutes.assetPageUnitKey: UnitsEnum.tobias,
                   },
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 HomeButton(
-                  title: 'Apex Unit',
+                  title: UnitsEnum.apex.unitName,
                   routeToRedirect: AppRoutes.assets,
-                  arguments: {
+                  arguments: const {
                     AppRoutes.assetPageUnitKey: UnitsEnum.apex,
                   },
                 ),
-                Spacer(),
-                SvgAdapter(
-                  path: AssetsConstants.logo,
-                  width: 200,
-                  color: Colors.white,
+                const Spacer(),
+                const Hero(
+                  tag: 'logo',
+                  child: SvgAdapter(
+                    path: AssetsConstants.logo,
+                    width: 200,
+                    color: Colors.white,
+                  ),
                 ),
               ],
             ),

@@ -2,38 +2,47 @@ import 'package:flutter/material.dart';
 import 'package:tractian_challenge/core/constants/colors_constants.dart';
 
 class SelectableButton extends StatelessWidget {
-  final String title;
-  final IconData icon;
+  final SelectableButtonVariant variant;
   final void Function(bool?)? onChanged;
   final bool isSelected;
   const SelectableButton({
     super.key,
-    required this.title,
-    required this.icon,
+    required this.variant,
     this.onChanged,
     required this.isSelected,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40,
-      child: ElevatedButton(
-        style: _setButtonStyle(),
-        onPressed: () {
-          onChanged?.call(!isSelected);
-        },
+    return InkWell(
+      borderRadius: BorderRadius.circular(8),
+      onTap: () {
+        onChanged?.call(!isSelected);
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        height: 26,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color:
+              isSelected ? ColorsConstants.darkBlue : ColorsConstants.lightGray,
+        ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Icon(
-              icon,
-              size: 12,
+              variant.icon,
+              size: 16,
+              color: variant.iconColor,
             ),
             const SizedBox(width: 8),
             Text(
-              title,
+              variant.title,
               style: TextStyle(
-                color: isSelected? ColorsConstants.white : ColorsConstants.darkGray,
+                color: isSelected
+                    ? ColorsConstants.white
+                    : ColorsConstants.darkBlue,
               ),
             ),
           ],
@@ -41,39 +50,25 @@ class SelectableButton extends StatelessWidget {
       ),
     );
   }
+}
 
-  ButtonStyle _setButtonStyle() {
-    if (isSelected) {
-      return ElevatedButton.styleFrom(
-        textStyle: const TextStyle(
-          color: ColorsConstants.white,
-        ),
-        backgroundColor: Colors.transparent,
-        shadowColor: Colors.transparent,
-        foregroundColor: ColorsConstants.white,
-        iconColor: ColorsConstants.white,
-        padding: const EdgeInsets.all(24),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      );
-    }
-    return ElevatedButton.styleFrom(
-      textStyle: const TextStyle(
-        color: ColorsConstants.darkGray,
-      ),
-      backgroundColor: Colors.transparent,
-      shadowColor: Colors.transparent,
-      foregroundColor: ColorsConstants.darkGray,
-      iconColor: ColorsConstants.white,
-      padding: const EdgeInsets.all(24),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-        side: const BorderSide(
-          color: ColorsConstants.darkGray,
-          width: 2,
-        ),
-      ),
-    );
-  }
+enum SelectableButtonVariant {
+  energy(
+      title: 'Sensor de energia',
+      icon: Icons.offline_bolt_rounded,
+      iconColor: ColorsConstants.lightGreen),
+  alert(
+      title: 'Estado crítico',
+      icon: Icons.error,
+      iconColor: ColorsConstants.lightRed),
+  ;
+
+  const SelectableButtonVariant({
+    required this.title,
+    required this.icon,
+    required this.iconColor,
+  });
+  final String title;
+  final IconData icon;
+  final Color iconColor;
 }

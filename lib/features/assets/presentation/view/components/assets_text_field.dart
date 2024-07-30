@@ -12,29 +12,27 @@ class AssetsTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: TextField(
-        controller: searchController,
-        onTapOutside: (event) {
-          FocusScope.of(context).unfocus();
-        },
-        decoration: InputDecoration(
-          labelText: labelText,
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide.none,
-          ),
-          labelStyle: const TextStyle(
-            color: ColorsConstants.darkGray,
-          ),
-          filled: true,
-          prefixIcon: const Icon(
-            Icons.search,
-            color: ColorsConstants.darkGray,
-          ),
-          fillColor: ColorsConstants.gray,
+    return TextField(
+      controller: searchController,
+      onTapOutside: (event) {
+        FocusScope.of(context).unfocus();
+      },
+      decoration: InputDecoration(
+        labelText: labelText,
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
         ),
+        labelStyle: const TextStyle(
+          color: ColorsConstants.newGray,
+        ),
+        filled: true,
+        prefixIcon: const Icon(
+          Icons.search,
+          color: ColorsConstants.newGray,
+        ),
+        fillColor: ColorsConstants.lightGray,
       ),
     );
   }

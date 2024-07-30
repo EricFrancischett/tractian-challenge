@@ -33,27 +33,31 @@ class HomeButton extends StatelessWidget {
       },
       child: Row(
         children: [
-          Container(
-            width: 34,
-            height: 34,
-            decoration: const BoxDecoration(
-              color: ColorsConstants.lightBlue,
-              borderRadius: BorderRadius.all(Radius.circular(4)),
-            ),
-            child: const Icon(
-              Icons.factory_rounded,
-              size: 22,
-              color: ColorsConstants.darkBlue,
-            ),
-          ),
-          const SizedBox(width: 16),
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 18,
-              color: ColorsConstants.white,
-              fontWeight: FontWeight.normal,
-            ),
+          Row(
+            children: [
+              Container(
+                width: 34,
+                height: 34,
+                decoration: const BoxDecoration(
+                  color: ColorsConstants.lightBlue,
+                  borderRadius: BorderRadius.all(Radius.circular(4)),
+                ),
+                child: const Icon(
+                  Icons.factory_rounded,
+                  size: 22,
+                  color: ColorsConstants.darkBlue,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 18,
+                  color: ColorsConstants.white,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ],
           ),
           const Spacer(),
           Icon(

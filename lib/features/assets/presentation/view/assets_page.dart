@@ -5,6 +5,7 @@ import 'package:mobx/mobx.dart';
 import 'package:tractian_challenge/core/enums/units_enum.dart';
 import 'package:tractian_challenge/core/widgets/custom_scaffold.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/components/assets_text_field.dart';
+import 'package:tractian_challenge/features/assets/presentation/view/components/selectable_assets_button.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/components/tree_view.dart';
 import 'package:tractian_challenge/features/assets/presentation/controller/assets_controller.dart';
 
@@ -43,8 +44,8 @@ class _AssetsPageState extends State<AssetsPage> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      pageTitle: 'Assets',
-      padding: const EdgeInsets.all(8),
+      pageTitle: widget.unit.unitName,
+      padding: const EdgeInsets.all(16),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
@@ -58,9 +59,9 @@ class _AssetsPageState extends State<AssetsPage> {
             children: [
               Expanded(
                 child: Observer(
-                  builder: (_) => CheckboxListTile(
-                    title: const Text('Energia'),
-                    value: controller.showEnergySensors,
+                  builder: (_) => SelectableButton(
+                    variant: SelectableButtonVariant.energy,
+                    isSelected: controller.showEnergySensors,
                     onChanged: (value) {
                       controller.setShowEnergySensors(value ?? false);
                     },
@@ -70,9 +71,9 @@ class _AssetsPageState extends State<AssetsPage> {
               const SizedBox(width: 8),
               Expanded(
                 child: Observer(
-                  builder: (_) => CheckboxListTile(
-                    title: const Text('Critico'),
-                    value: controller.showCriticalStatus,
+                  builder: (_) => SelectableButton(
+                    variant: SelectableButtonVariant.alert,
+                    isSelected: controller.showCriticalStatus,
                     onChanged: (value) {
                       controller.setShowCriticalStatus(value ?? false);
                     },
