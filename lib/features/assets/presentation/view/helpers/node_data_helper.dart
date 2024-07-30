@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tractian_challenge/core/adapters/svg_adapter.dart';
+import 'package:tractian_challenge/core/constants/assets_constants.dart';
+import 'package:tractian_challenge/core/constants/colors_constants.dart';
 import 'package:tractian_challenge/core/entities/asset/asset_entity.dart';
 import 'package:tractian_challenge/core/entities/location/location_entity.dart';
 import 'package:tractian_challenge/features/assets/domain/enums/component_sensor_type_enum.dart';
@@ -31,11 +34,26 @@ class NodeDataHelper {
   static Widget? getIconByType(NodeTypeEnum? type) {
     switch (type) {
       case NodeTypeEnum.asset:
-        return const Icon(Icons.crop_square);
+        return const SvgAdapter(
+          path: AssetsConstants.assetIcon,
+          width: 20,
+          height: 20,
+          color: ColorsConstants.darkBlue,
+        );
       case NodeTypeEnum.location:
-        return const Icon(Icons.place);
+        return const SvgAdapter(
+          path: AssetsConstants.locaitonIcon,
+          width: 20,
+          height: 20,
+          color: ColorsConstants.darkBlue,
+        );
       case NodeTypeEnum.component:
-        return const Icon(Icons.crop_16_9);
+        return const SvgAdapter(
+          path: AssetsConstants.componentIcon,
+          width: 20,
+          height: 20,
+          color: ColorsConstants.darkBlue,
+        );
       default:
         return null;
     }
