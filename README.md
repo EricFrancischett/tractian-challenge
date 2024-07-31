@@ -14,9 +14,14 @@ This repository contains a Flutter application designed to manage and display as
 
 ## Features
 
+### General
+
+- Custom Launcher Icon according to the new UI.
+- Custom Splash page according to the new UI.
+
 ### Home Page
 
-- Menu to select which unit you want to manage assets
+- Menu to select which unit you want to manage assets.
 
 ### Assets Page
 
@@ -103,6 +108,8 @@ ExpansionTile(
 - **build_runner: ^2.4.11**
 - **mobx_codegen: ^2.6.1**
 - **mockito: ^5.4.4**
+- **flutter_native_splash: ^2.4.1**
+- **flutter_launcher_icons: ^0.13.1** 
 
 ### Description
 
@@ -126,6 +133,12 @@ ExpansionTile(
 
 7. **mockito**:
    - Mockito is a popular library for creating mock objects in Dart tests. It is used for unit testing by allowing you to mock dependencies and verify interactions, ensuring your code is tested in isolation and behaves as expected.
+
+8. **flutter_launcher_icons**:
+   - This package automatically generates iOS, Android, and Web-native code for customizing this native splash screen background color and splash image. Used to implement a custom spash screen.
+
+9. **flutter_launcher_icons**:
+   - A package which simplifies the task of updating your Flutter app's launcher icon. Used to implement a custom launcher icon.
 
 ## Project Structure
 
