@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tractian_challenge/features/home/home_page.dart';
+import 'package:tractian_challenge/routes/app_routes.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
@@ -9,10 +9,11 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        fontFamily: 'Poppins',
         useMaterial3: true,
       ),
-      home: const HomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: AppRoutes.home,
+      routes: AppRoutes.routes,
     );
   }
 }

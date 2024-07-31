@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Sensor 14 - energy",
+    "id": "6a9b41a1b62cbf0062dd8a6f",
+    "locationId": "6a9b41afa2555c0067916b94",
+    "parentId": null,
+    "sensorType": "energy",
+    "status": "operating"
+  },
+  {
+    "name": "Sensor 15 - energy",
+    "id": "6a9b41dbb62cbf0062dd8a72",
+    "locationId": "6a9b41afa2555c0067916b94",
+    "parentId": null,
+    "sensorType": "energy",
+    "status": "operating"
+  },
+  {
+    "name": "Test Asset Both",
+    "id": "789",
+    "locationId": "456",
+    "parentId": null,
+    "sensorType": null,
+    "status": null
+  },
+  {
+    "name": "Test Component Both",
+    "id": "999",
+    "locationId": null,
+    "parentId": "789",
+    "sensorType": "energy",
+    "status": "alert"
+  },
+  {
+    "name": "Test Asset Energy",
+    "id": "1111",
+    "locationId": "456",
+    "parentId": null,
+    "sensorType": null,
+    "status": null
+  },
+  {
+    "name": "Test Component Energy",
+    "id": "2222",
+    "locationId": null,
+    "parentId": "1111",
+    "sensorType": "energy",
+    "status": "operating"
+  },
+  {
+    "name": "Test Asset Energy",
+    "id": "3333",
+    "locationId": "456",
+    "parentId": null,
+    "sensorType": null,
+    "status": null
+  },
+  {
+    "name": "Test Component Alert",
+    "id": "4444",
+    "locationId": null,
+    "parentId": "3333",
+    "sensorType": null,
+    "status": "alert"
+  }
+]
