@@ -40,6 +40,7 @@ dependencies:
   get_it: ^7.7.0
   flutter_svg: ^2.0.10+1
   flutter_native_splash: ^2.4.1
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +67,13 @@ flutter_native_splash:
   android_12:
     color: "#FFFFFF"
     image: assets/icons/logo.png
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/launcher-logo.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#FFFFFF"
 
 flutter:
 
