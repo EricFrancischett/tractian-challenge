@@ -7,6 +7,7 @@ import 'package:tractian_challenge/core/widgets/custom_scaffold.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/components/assets_text_field.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/components/empty_tree_view_widget.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/components/selectable_assets_button.dart';
+import 'package:tractian_challenge/features/assets/presentation/view/components/tree_view/components/custom_float_action_button.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/components/tree_view/tree_view.dart';
 import 'package:tractian_challenge/features/assets/presentation/controller/assets_controller.dart';
 
@@ -24,6 +25,7 @@ class AssetsPage extends StatefulWidget {
 class _AssetsPageState extends State<AssetsPage> {
   late AssetsController controller;
   late TextEditingController _searchController;
+  late ScrollController scrollController;
 
   @override
   void initState() {
@@ -33,12 +35,21 @@ class _AssetsPageState extends State<AssetsPage> {
     _searchController.addListener(() {
       controller.setSearchQuery(_searchController.text);
     });
+    scrollController = ScrollController();
+    scrollController.addListener(() {
+      if (scrollController.position.pixels > 200) {
+        controller.showFloatingActionButton = true;
+      } else {
+        controller.showFloatingActionButton = false;
+      }
+    });
     controller.loadTreeNodes(widget.unit);
   }
 
   @override
   void dispose() {
     _searchController.dispose();
+    scrollController.dispose();
     super.dispose();
   }
 
@@ -46,7 +57,11 @@ class _AssetsPageState extends State<AssetsPage> {
   Widget build(BuildContext context) {
     return CustomScaffold(
       pageTitle: widget.unit.unitName,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.only(
+        top: 16,
+        left: 16,
+        right: 16,
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
@@ -108,8 +123,26 @@ class _AssetsPageState extends State<AssetsPage> {
                     icon: Icons.playlist_remove_outlined,
                   );
                 }
-
-                return TreeView(nodes: controller.filteredNodes);
+                return Stack(
+                  alignment: Alignment.bottomRight,
+                  children: [
+                    TreeView(
+                      nodes: controller.filteredNodes,
+                      scrollController: scrollController,
+                    ),
+                    CustomFloatActionButton(
+                      showFloatingActionButton:
+                          controller.showFloatingActionButton,
+                      onTap: () {
+                        scrollController.animateTo(
+                          0,
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeInOut,
+                        );
+                      },
+                    ),
+                  ],
+                );
               },
             ),
           ),

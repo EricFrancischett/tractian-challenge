@@ -5,10 +5,12 @@ import 'package:tractian_challenge/features/assets/presentation/view/components/
 
 class TreeView extends StatefulWidget {
   final List<TreeNode> nodes;
+  final ScrollController scrollController;
 
   const TreeView({
     super.key,
     required this.nodes,
+    required this.scrollController,
   });
 
   @override
@@ -16,12 +18,12 @@ class TreeView extends StatefulWidget {
 }
 
 class _TreeViewState extends State<TreeView> {
-  final scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24),
       child: ListView.builder(
+        controller: widget.scrollController,
         itemCount: widget.nodes.length,
         itemBuilder: (context, index) {
           final node = widget.nodes[index];

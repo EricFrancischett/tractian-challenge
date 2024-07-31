@@ -65,6 +65,23 @@ mixin _$AssetsController on _AssetsControllerBase, Store {
     });
   }
 
+  late final _$showFloatingActionButtonAtom = Atom(
+      name: '_AssetsControllerBase.showFloatingActionButton', context: context);
+
+  @override
+  bool get showFloatingActionButton {
+    _$showFloatingActionButtonAtom.reportRead();
+    return super.showFloatingActionButton;
+  }
+
+  @override
+  set showFloatingActionButton(bool value) {
+    _$showFloatingActionButtonAtom
+        .reportWrite(value, super.showFloatingActionButton, () {
+      super.showFloatingActionButton = value;
+    });
+  }
+
   late final _$futureTreeNodesAtom =
       Atom(name: '_AssetsControllerBase.futureTreeNodes', context: context);
 
@@ -131,6 +148,7 @@ mixin _$AssetsController on _AssetsControllerBase, Store {
 searchQuery: ${searchQuery},
 showEnergySensors: ${showEnergySensors},
 showCriticalStatus: ${showCriticalStatus},
+showFloatingActionButton: ${showFloatingActionButton},
 futureTreeNodes: ${futureTreeNodes},
 filteredNodes: ${filteredNodes}
     ''';

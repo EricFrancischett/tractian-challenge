@@ -31,6 +31,9 @@ abstract class _AssetsControllerBase with Store {
   bool showCriticalStatus = false;
 
   @observable
+  bool showFloatingActionButton = false;
+
+  @observable
   ObservableFuture<List<TreeNode<dynamic>>>? futureTreeNodes;
 
   // Action to set the search query

@@ -204,14 +204,18 @@ lib/
 
 3. Assets Page - No title telling to the user which unit page he is.
 
+4. No indication of a component to help the user to scroll up when user already went deep down on the list.
+
 ![alt text](/readme_files/old_version.png)
 
 ### Current version
 
 - Added home page instruction informing the user that the home button redirects to the unit page.
 
-- Using the same icon to button filter and node tree icon to relate the functions
+- Using the same icon to button filter and node tree icon to relate the functions.
 
-- Added assests page title informing the uses which unit he is managing
+- Added assests page title informing the uses which unit he is managing.
+
+- Added a Floating Action Button that scrolls all the way up when pressed.
 
 ![alt text](/readme_files/new_version.png)
