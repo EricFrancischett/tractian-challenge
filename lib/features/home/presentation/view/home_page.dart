@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
           gradient: ColorsConstants.homeGradient,
         ),
         child: Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: ColorsConstants.transparent,
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -64,7 +64,7 @@ class HomePage extends StatelessWidget {
                     child: SvgAdapter(
                       path: AssetsConstants.logo,
                       width: 200,
-                      color: Colors.white,
+                      color: ColorsConstants.white,
                     ),
                   ),
                 ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tractian_challenge/core/constants/colors_constants.dart';
 import 'package:tractian_challenge/core/entities/tree_node/tree_node.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/components/tree_view/components/node_title_widget.dart';
 import 'package:tractian_challenge/features/assets/presentation/view/components/tree_view/tree_view_builder.dart';
@@ -14,7 +15,7 @@ class TreeExpansionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
-        dividerColor: Colors.transparent,
+        dividerColor: ColorsConstants.transparent,
       ),
       child: ListTileTheme(
         data: TreeViewBuilder.customListTileThemeData,
@@ -28,9 +29,17 @@ class TreeExpansionTile extends StatelessWidget {
           title: NodeTitleWidget(
             node: node,
           ),
-          children: node.children
-              .map((child) => TreeViewBuilder.buildNode(child, context))
-              .toList(),
+          children: [
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: node.children.length,
+              itemBuilder: (context, index) {
+                final childNode = node.children[index];
+                return TreeViewBuilder.buildNode(childNode, context);
+              },
+            ),
+          ],
         ),
       ),
     );

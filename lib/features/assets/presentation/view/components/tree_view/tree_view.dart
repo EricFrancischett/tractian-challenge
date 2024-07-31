@@ -16,25 +16,32 @@ class TreeView extends StatefulWidget {
 }
 
 class _TreeViewState extends State<TreeView> {
+  final scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24),
-      child: ListView.separated(
+      child: ListView.builder(
         itemCount: widget.nodes.length,
         itemBuilder: (context, index) {
           final node = widget.nodes[index];
-          return TreeViewBuilder.buildNode(node, context);
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TreeViewBuilder.buildNode(node, context),
+              SizedBox(
+                height: 20,
+                child: Center(
+                  child: Divider(
+                    color: ColorsConstants.gray.withOpacity(0.3),
+                    height: 1,
+                  ),
+                ),
+              ),
+            ],
+          );
         },
-        separatorBuilder: (context, index) => const SizedBox(
-          height: 20,
-          child: Center(
-            child: Divider(
-              color: ColorsConstants.newGray,
-              height: 1,
-            ),
-          ),
-        ),
       ),
     );
   }

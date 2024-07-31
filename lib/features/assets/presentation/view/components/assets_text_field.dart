@@ -25,12 +25,12 @@ class AssetsTextField extends StatelessWidget {
           borderSide: BorderSide.none,
         ),
         labelStyle: const TextStyle(
-          color: ColorsConstants.newGray,
+          color: ColorsConstants.gray,
         ),
         filled: true,
         prefixIcon: const Icon(
           Icons.search,
-          color: ColorsConstants.newGray,
+          color: ColorsConstants.gray,
         ),
         fillColor: ColorsConstants.lightGray,
       ),

@@ -16,8 +16,8 @@ class HomeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.transparent,
-        shadowColor: Colors.transparent,
+        backgroundColor: ColorsConstants.transparent,
+        shadowColor: ColorsConstants.transparent,
         foregroundColor: ColorsConstants.white,
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         shape: RoundedRectangleBorder(

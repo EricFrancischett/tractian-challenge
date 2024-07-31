@@ -25,7 +25,6 @@ This repository contains a Flutter application designed to manage and display as
 - Display assets in a hierarchical tree view with expandable nodes.
 - Search for specific assets or locations.
 - Filter assets based on sensor type (energy) and status (critical).
-- Lazy load large datasets to prevent memory overflow.
 - Use MobX for state management.
 - Use GetIt for dependency injection.
 
@@ -41,13 +40,42 @@ The application handles a large amount of data, and to avoid lags and crashes, `
 
 - *Isolates were not used in the function to load system data because Flutter does this automatically:*
 
-    `"If the string is larger than 50 KB, the decoding process is delegated to an isolate to avoid jank on the main thread."`
+   `"If the string is larger than 50 KB, the decoding process is delegated to an isolate to avoid jank on the main thread."`
 
-    [Read more about loadString method here](https://api.flutter.dev/flutter/services/AssetBundle/loadString.html)
+   [Read more about loadString method here](https://api.flutter.dev/flutter/services/AssetBundle/loadString.html)
 
-### Lazy loading on ListView.builder()
+### Using ListView.builder() to render ExpansionTile childrens
 
-- Due to the tree view, depending on the number of locations, assets, and components, the screen may take time to render. To help in this issue, the application renders 20 items at a time, and each new block is loaded when the user scrolls to the end of the list. This was done to avoid overloading the screen with too many items to render.
+- Due to the tree view, depending on the number of locations, assets, and components, the screen may take time to render. To help in this issue, `ListView.buider()` were used instead of normal ExpansionTile children rendering. According to ExpansionTile documentation `"This widget is typically used with [ListView] to create an "expand / collapse" list entry."`, so even using `ListView.builder()` to build the root list, the children of expansion tile will be rendered entirely, which causes some freezing on long lists. According to the Flutter documentation, to work with long lists we should use `ListView.builder()`. 
+
+   `"The standard ListView constructor works well for small lists. To work with lists that contain a large number of items, it's best to use the ListView.builder constructor. In contrast to the default ListView constructor, which requires creating all items at once, the ListView.builder() constructor creates items as they're scrolled onto the screen."`
+
+- Normal `ExpansionTile` children `ListView` rendering
+
+```dart
+ExpansionTile(
+ children: node.children
+     .map((child) => TreeViewBuilder.buildNode(child, context))
+     .toList(),
+),
+```
+
+- Forcing `ListView.Builder()` ExpansionTile children rendering
+
+```dart
+ExpansionTile(
+ children: [
+   ListView.builder(
+     itemBuilder: (context, index) {
+       final childNode = node.children[index];
+       return TreeViewBuilder.buildNode(childNode, context);
+     },
+   ),
+ ],
+),
+```
+
+   [Read more about `ListView.builder()` here](https://docs.flutter.dev/cookbook/lists/long-lists)
 
 ```dart
     _scrollController = ScrollController();
