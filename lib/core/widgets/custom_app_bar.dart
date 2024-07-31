@@ -18,6 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       surfaceTintColor: ColorsConstants.transparent,
       backgroundColor: ColorsConstants.white,
+      centerTitle: true,
       title: _buildTitle(title: title),
       toolbarHeight: 80,
     );
@@ -26,6 +27,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget _buildTitle({required String title}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Hero(
           tag: 'logo',
